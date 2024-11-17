@@ -1,98 +1,48 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
-
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import { Link } from "@nextui-org/link"
+import { siteConfig } from "@/config/site"
+import { button as buttonStyles } from "@nextui-org/theme"
 
 export default function Home() {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 bg-gradient-to-r from-[#ff7f00] to-[#ffb300]">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Welcome to&nbsp;</span>
-        <span className={title({ color: "violet" })}>GuardDog&nbsp;</span>
-        <br />
-        <span className={title()}>A Smart Dashboard for&nbsp;</span>
-        <span className={title({ color: "violet" })}>
-          Fraudulent Transactions&nbsp;
-        </span>
-        <br />
-        <span className={title()}>
-          Protect your bank from financial fraud with real-time metrics and
-          alerts.
-        </span>
-        <div className={subtitle({ class: "mt-4 text-lg" })}>
-          Secure, Intelligent, and Always On Guard.
-        </div>
-      </div>
-
-      {/* Key Features */}
-      <div className="text-center py-8 bg-white rounded-lg shadow-lg max-w-4xl mx-auto">
-        <h2 className="text-3xl font-semibold mb-4">
-          Track Fraudulent Transactions
-        </h2>
-        <div className="flex justify-evenly gap-8">
-          <div className="flex flex-col items-center">
-            <GithubIcon className="h-12 w-12 text-primary" />
-            <h3 className="font-semibold mt-2">Real-time Metrics</h3>
-            <p className="text-sm text-gray-600">
-              Get live updates on suspicious transactions and trends, ensuring
-              you never miss a thing.
-            </p>
-          </div>
-          <div className="flex flex-col items-center">
-            <Snippet className="h-12 w-12 text-primary" />
-            <h3 className="font-semibold mt-2">Fraud Score Analytics</h3>
-            <p className="text-sm text-gray-600">
-              Analyze fraud scores based on transaction history to quickly
-              identify risks and prevent losses.
-            </p>
-          </div>
-          <div className="flex flex-col items-center">
-            <Code className="h-12 w-12 text-primary" />
-            <h3 className="font-semibold mt-2">Custom Alerts</h3>
-            <p className="text-sm text-gray-600">
-              Set up personalized alerts to notify you when suspicious activity
-              is detected.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Call-to-action */}
-      <div className="flex gap-4 mt-8">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Login to GuardDog
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          Sign Up Now
-        </Link>
-      </div>
-
-      {/* Footer */}
-      <footer className="mt-12 text-center">
-        <p className="text-sm text-gray-600">
-          GuardDog is the most reliable tool to help you stay ahead of
-          fraudulent money transfers.
+    <section className="flex items-center justify-center min-h-screen bg-gradient-to-r from-[#ff7f00] to-[#ffb300]">
+      {/* Centered Container */}
+      <div className="text-center max-w-xl px-6">
+        {/* Hero Section */}
+        <h1 className="text-4xl font-bold text-white sm:text-6xl mb-4">
+          Welcome to <span className="text-violet-200">GuardDog</span>
+        </h1>
+        <p className="mt-4 text-xl text-white">
+          A Smart Dashboard for Fraudulent Transactions
         </p>
-        <p className="text-xs text-gray-400 mt-2">
-          © 2024 GuardDog. All Rights Reserved.
+        <p className="mt-2 text-lg text-white">
+          Protect your bank from fraud with real-time alerts and metrics.
         </p>
-      </footer>
+
+        {/* Call-to-action */}
+        <div className="mt-10 flex gap-6 justify-center">
+          <Link
+            href="/employee"
+            className={buttonStyles({
+              color: "primary",
+              radius: "full",
+              variant: "shadow",
+              className: "px-6 py-3 text-lg"
+            })}
+          >
+            Login
+          </Link>
+        </div>
+
+        {/* Footer */}
+        <footer className="mt-16 text-center">
+          <p className="text-sm text-white">
+            GuardDog helps you stay ahead of fraudulent transactions.
+          </p>
+          <p className="text-xs text-gray-200 mt-2">
+            © 2024 GuardDog. All Rights Reserved.
+          </p>
+        </footer>
+      </div>
     </section>
-  );
+  )
 }
