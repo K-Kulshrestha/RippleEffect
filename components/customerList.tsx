@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+
 import { Customer } from "@/types/Customer";
 import { fetchCustomerData } from "@/lib/api";
 
@@ -11,6 +12,7 @@ const CustomerList = () => {
     const getCustomerData = async () => {
       try {
         const data = await fetchCustomerData();
+
         setCustomers(data); // Set the fetched customer data to state
       } catch (err) {
         setError("Error fetching customer data");

@@ -10,7 +10,7 @@ export const fetchCustomerData = async (): Promise<Customer[]> => {
           "Content-Type": "application/json",
           // Add any other headers as needed, e.g. for CORS
         },
-      }
+      },
     );
 
     // Ensure the response is OK
