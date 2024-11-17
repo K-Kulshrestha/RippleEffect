@@ -1,28 +1,16 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "OmniVault",
+  description: "Your banking needs in one place.",
   navItems: [
     {
-      label: "Home",
-      href: "/",
+      label: "Employee",
+      href: "/employee",
     },
     {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
+      label: "Customer",
+      href: "/customer",
     },
   ],
   navMenuItems: [
