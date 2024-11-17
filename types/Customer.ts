@@ -1,4 +1,4 @@
-// types/customer.ts
+// Define the TypeScript type for a Customer
 export interface Customer {
   customerID: number;
   income: number;
@@ -34,3 +34,34 @@ export interface Customer {
   month: number;
   fraud_bool: boolean;
 }
+
+// Function to fetch customer data from the API
+export const fetchCustomerData = async (): Promise<Customer[]> => {
+  try {
+    const res = await fetch(
+      "https://t2dc4smwcni7pipkoxnywy2voe0pvvue.lambda-url.us-east-2.on.aws/",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch customer data: ${res.statusText}`);
+    }
+
+    const data: { status: string; data: Customer[] } = await res.json();
+
+    if (Array.isArray(data.data)) {
+      return data.data;
+    } else {
+      console.error("Fetched data is not in the expected format:", data);
+      throw new Error("Fetched data is not in the expected format");
+    }
+  } catch (error) {
+    console.error("Error fetching customer data:", error);
+    throw error;
+  }
+};
