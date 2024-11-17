@@ -1,6 +1,5 @@
-import { Link } from "@nextui-org/link"
-import { siteConfig } from "@/config/site"
-import { button as buttonStyles } from "@nextui-org/theme"
+import { Link } from "@nextui-org/link";
+import { button as buttonStyles } from "@nextui-org/theme";
 
 export default function Home() {
   return (
@@ -21,13 +20,13 @@ export default function Home() {
         {/* Call-to-action */}
         <div className="mt-10 flex gap-6 justify-center">
           <Link
-            href="/employee"
             className={buttonStyles({
               color: "primary",
               radius: "full",
               variant: "shadow",
-              className: "px-6 py-3 text-lg"
+              className: "px-6 py-3 text-lg",
             })}
+            href="/employee"
           >
             Login
           </Link>
@@ -44,5 +43,5 @@ export default function Home() {
         </footer>
       </div>
     </section>
-  )
+  );
 }

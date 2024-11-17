@@ -1,12 +1,7 @@
 // pages/index.tsx
-import CustomerList from "@/components/customerList";
 
 const HomePage = () => {
-  return (
-    <div>
-     
-    </div>
-  );
+  return <div />;
 };
 
 export default HomePage;
