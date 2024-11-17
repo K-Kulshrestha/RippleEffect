@@ -1,9 +1,13 @@
-import { title } from "@/components/primitives";
+// pages/index.tsx
+import CustomerList from "@/components/customerList";
 
-export default function AboutPage() {
+const HomePage = () => {
   return (
     <div>
-      <h1 className={title()}>Customer</h1>
+      <h1>Welcome to the Customer Dashboard</h1>
+      <CustomerList />
     </div>
   );
-}
+};
+
+export default HomePage;

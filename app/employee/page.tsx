@@ -1,11 +1,17 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
-import { AlertCircle, BarChart3, CreditCard, DollarSign, Users } from 'lucide-react'
+import * as React from "react";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import {
+  AlertCircle,
+  BarChart3,
+  CreditCard,
+  DollarSign,
+  Users,
+} from "lucide-react";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Sidebar,
   SidebarProvider,
@@ -16,25 +22,29 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+} from "@/components/ui/sidebar";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 
 // Define types for the fraud metrics
 interface FraudMetric {
-  title: string
-  metric: string
-  icon: React.ComponentType<any>
-  description: string
+  title: string;
+  metric: string;
+  icon: React.ComponentType<any>;
+  description: string;
 }
 
 // Define types for the customer data
 interface Customer {
-  customerID: number
-  name: string
-  email: string
-  fraudScore: number
-  transactionVolume: string
-  lastTransaction: string
+  customerID: number;
+  name: string;
+  email: string;
+  fraudScore: number;
+  transactionVolume: string;
+  lastTransaction: string;
 }
 
 // Dummy data for fraud metrics
@@ -63,7 +73,7 @@ const fraudMetrics: FraudMetric[] = [
     icon: CreditCard,
     description: "Percentage of disputed transactions",
   },
-]
+];
 
 // Dummy customer data
 const customers: Customer[] = [
@@ -107,7 +117,7 @@ const customers: Customer[] = [
     transactionVolume: "$5,678.90",
     lastTransaction: "2023-04-03",
   },
-]
+];
 
 // Dummy data for charts
 const dailyTransactions = [
@@ -118,7 +128,7 @@ const dailyTransactions = [
   { name: "Fri", total: 2400 },
   { name: "Sat", total: 1800 },
   { name: "Sun", total: 1600 },
-]
+];
 
 const fraudScoreDistribution = [
   { score: "0.00-0.02", count: 1200 },
@@ -127,15 +137,19 @@ const fraudScoreDistribution = [
   { score: "0.06-0.08", count: 400 },
   { score: "0.08-0.10", count: 200 },
   { score: ">0.10", count: 100 },
-]
+];
 
 const FraudMonitoringDashboard: React.FC = () => {
   return (
     <SidebarProvider>
       <div className="flex h-screen overflow-hidden">
-        <Sidebar className="p-4"> {/* Added padding here */}
+        <Sidebar className="p-4">
+          {" "}
+          {/* Added padding here */}
           <SidebarHeader>
-            <h2 className="px-6 text-lg font-semibold tracking-tight">GuardDog</h2>
+            <h2 className="px-6 text-lg font-semibold tracking-tight">
+              GuardDog
+            </h2>
           </SidebarHeader>
           <SidebarContent>
             <SidebarMenu>
@@ -167,7 +181,9 @@ const FraudMonitoringDashboard: React.FC = () => {
             </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
-        <div className="flex-1 overflow-y-auto bg-background p-6"> {/* Padding added here */}
+        <div className="flex-1 overflow-y-auto bg-background p-6">
+          {" "}
+          {/* Padding added here */}
           <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-6">
             <SidebarTrigger />
             <h1 className="text-xl font-semibold">Customer Monitoring</h1>
@@ -177,55 +193,67 @@ const FraudMonitoringDashboard: React.FC = () => {
               {fraudMetrics.map((item) => (
                 <Card key={item.title}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">{item.title}</CardTitle>
+                    <CardTitle className="text-sm font-medium">
+                      {item.title}
+                    </CardTitle>
                     <item.icon className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
-                  <CardContent className="p-4"> {/* Padding added here */}
+                  <CardContent className="p-4">
+                    {" "}
+                    {/* Padding added here */}
                     <div className="text-2xl font-bold">{item.metric}</div>
-                    <p className="text-xs text-muted-foreground">{item.description}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {item.description}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
             </div>
-            <Tabs defaultValue="overview" className="mt-6 space-y-4">
+            <Tabs className="mt-6 space-y-4" defaultValue="overview">
               <TabsList>
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="customers">Customers</TabsTrigger>
               </TabsList>
-              <TabsContent value="overview" className="space-y-4">
+              <TabsContent className="space-y-4" value="overview">
                 <div className="grid gap-4 md:grid-cols-2">
                   <Card>
                     <CardHeader>
                       <CardTitle>Daily Transactions</CardTitle>
                     </CardHeader>
-                    <CardContent className="pl-2 p-4"> {/* Padding added here */}
+                    <CardContent className="pl-2 p-4">
+                      {" "}
+                      {/* Padding added here */}
                       <ChartContainer
+                        className="h-[200px]"
                         config={{
                           total: {
                             label: "Total",
                             color: "hsl(var(--chart-1))",
                           },
                         }}
-                        className="h-[200px]"
                       >
-                        <ResponsiveContainer width="100%" height="100%">
+                        <ResponsiveContainer height="100%" width="100%">
                           <BarChart data={dailyTransactions}>
                             <XAxis
-                              dataKey="name"
-                              stroke="#888888"
-                              fontSize={12}
-                              tickLine={false}
                               axisLine={false}
+                              dataKey="name"
+                              fontSize={12}
+                              stroke="#888888"
+                              tickLine={false}
                             />
                             <YAxis
-                              stroke="#888888"
-                              fontSize={12}
-                              tickLine={false}
                               axisLine={false}
+                              fontSize={12}
+                              stroke="#888888"
                               tickFormatter={(value) => `$${value}`}
+                              tickLine={false}
                             />
                             <ChartTooltip content={<ChartTooltipContent />} />
-                            <Bar dataKey="total" fill="var(--color-total)" radius={[4, 4, 0, 0]} />
+                            <Bar
+                              dataKey="total"
+                              fill="var(--color-total)"
+                              radius={[4, 4, 0, 0]}
+                            />
                           </BarChart>
                         </ResponsiveContainer>
                       </ChartContainer>
@@ -235,34 +263,40 @@ const FraudMonitoringDashboard: React.FC = () => {
                     <CardHeader>
                       <CardTitle>Fraud Score Distribution</CardTitle>
                     </CardHeader>
-                    <CardContent className="pl-2 p-4"> {/* Padding added here */}
+                    <CardContent className="pl-2 p-4">
+                      {" "}
+                      {/* Padding added here */}
                       <ChartContainer
+                        className="h-[200px]"
                         config={{
                           count: {
                             label: "Count",
                             color: "hsl(var(--chart-2))",
                           },
                         }}
-                        className="h-[200px]"
                       >
-                        <ResponsiveContainer width="100%" height="100%">
+                        <ResponsiveContainer height="100%" width="100%">
                           <BarChart data={fraudScoreDistribution}>
                             <XAxis
-                              dataKey="score"
-                              stroke="#888888"
-                              fontSize={12}
-                              tickLine={false}
                               axisLine={false}
+                              dataKey="score"
+                              fontSize={12}
+                              stroke="#888888"
+                              tickLine={false}
                             />
                             <YAxis
-                              stroke="#888888"
-                              fontSize={12}
-                              tickLine={false}
                               axisLine={false}
+                              fontSize={12}
+                              stroke="#888888"
                               tickFormatter={(value) => value}
+                              tickLine={false}
                             />
                             <ChartTooltip content={<ChartTooltipContent />} />
-                            <Bar dataKey="count" fill="var(--color-count)" radius={[4, 4, 0, 0]} />
+                            <Bar
+                              dataKey="count"
+                              fill="var(--color-count)"
+                              radius={[4, 4, 0, 0]}
+                            />
                           </BarChart>
                         </ResponsiveContainer>
                       </ChartContainer>
@@ -275,7 +309,7 @@ const FraudMonitoringDashboard: React.FC = () => {
         </div>
       </div>
     </SidebarProvider>
-  )
-}
+  );
+};
 
-export default FraudMonitoringDashboard
+export default FraudMonitoringDashboard;
