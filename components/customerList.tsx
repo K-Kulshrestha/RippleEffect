@@ -1,41 +1,36 @@
 "use client";
-// components/CustomerList.tsx
-import { useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import { Customer } from "@/types/Customer";
 import { fetchCustomerData } from "@/lib/api";
 
-const CustomerList: React.FC = () => {
+const CustomerList = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const getCustomers = async () => {
+    const getCustomerData = async () => {
       try {
         const data = await fetchCustomerData();
-
-        setCustomers(data);
+        setCustomers(data); // Set the fetched customer data to state
       } catch (err) {
         setError("Error fetching customer data");
-      } finally {
-        setLoading(false);
       }
     };
 
-    getCustomers();
+    getCustomerData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  // Render the customer data
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
-    <div>
-      <h2>Customer List</h2>
+    <ul>
       {customers.map((customer) => (
-        <div key={customer.customerID}>{customer.name_email_similarity}</div>
+        <li key={customer.customerID}>{customer.name_email_similarity}</li>
       ))}
-    </div>
+    </ul>
   );
 };
 

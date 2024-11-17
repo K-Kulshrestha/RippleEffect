@@ -1,18 +1,35 @@
-// pages/api/getCustomers.ts
-import { NextApiRequest, NextApiResponse } from "next";
-
 import { Customer } from "@/types/Customer";
-import { fetchCustomerData } from "@/lib/api";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Customer[] | { error: string }>,
-) {
+export const fetchCustomerData = async (): Promise<Customer[]> => {
   try {
-    const customers = await fetchCustomerData();
+    const res = await fetch(
+      "https://t2dc4smwcni7pipkoxnywy2voe0pvvue.lambda-url.us-east-2.on.aws/",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Add any other headers as needed, e.g. for CORS
+        },
+      }
+    );
 
-    res.status(200).json(customers);
+    // Ensure the response is OK
+    if (!res.ok) {
+      throw new Error(`Failed to fetch customer data: ${res.statusText}`);
+    }
+
+    // Parse the response data
+    const data: { status: string; data: Customer[] } = await res.json();
+
+    // Check if the data has the correct property (e.g., "data" containing an array of customers)
+    if (Array.isArray(data.data)) {
+      return data.data; // Return the array of customers
+    } else {
+      console.error("Fetched data is not in the expected format:", data);
+      throw new Error("Fetched data is not in the expected format");
+    }
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch customer data" });
+    console.error("Error fetching customer data:", error);
+    throw error;
   }
-}
+};
