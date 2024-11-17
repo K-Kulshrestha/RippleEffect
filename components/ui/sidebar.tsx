@@ -175,8 +175,10 @@ export const SidebarLink = ({
       )}
       {...props}
     >
+      {/* Icon stays visible */}
       {link.icon}
       
+      {/* Label visibility toggles based on open state */}
       <motion.span
         animate={{
           opacity: open ? 1 : 0, // Show the label when open is true, otherwise hide it

@@ -85,10 +85,10 @@ const MyPage = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen rounded-lg">
       {/* Sidebar component */}
       <Sidebar open={open} setOpen={setOpen}>
-        <SidebarBody className="flex flex-col">
+        <SidebarBody className="flex flex-col bg-[#232228]">
           <div className="mt-8 flex flex-col gap-2">
             {links.map((link, idx) => (
               <SidebarLink key={idx} link={link} />
@@ -98,7 +98,7 @@ const MyPage = () => {
       </Sidebar>
 
       {/* Main content (other part of the page) */}
-      <div className="flex-1 p-10 bg-gray-50 dark:bg-neutral-800">
+      <div className="flex-1 p-10 bg-[#232228] dark:bg-neutral-800">
         <BentoGrid className="lg:grid-rows-3">
       {features.map((feature) => (
         <BentoCard key={feature.name} {...feature} />

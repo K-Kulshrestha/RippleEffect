@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head />
-      <body className={clsx("min-h-screen bg-background antialiased")}>
+      <body className={clsx("min-h-screen bg-[#171721] antialiased")}>
         <div className="relative flex flex-col h-screen">
         <header className="w-full bg-[#13131E] shadow-md">
   <nav className="flex justify-between items-center p-4 text-white">
@@ -19,10 +19,10 @@ export default function RootLayout({
     </div>
   </nav>
 </header>
-          <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+          <main className="container mx-auto max-w-screen pt-16 px-6 bg-[#171721]">
             {children}
           </main>
-          <footer className="w-full bg-[#13131E] py-6">
+          <footer className="bg-[#13131E] py-6">
   <div className="flex justify-center items-center text-white">
     <p className="text-sm text-center">
       © 2024 <span className="font-semibold">Your Company Name</span>. All rights reserved.
